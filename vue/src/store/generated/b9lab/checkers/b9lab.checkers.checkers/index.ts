@@ -52,6 +52,10 @@ const getDefaultState = () => {
 	}
 }
 
+
+
+
+
 // initial state
 const state = getDefaultState()
 
@@ -113,7 +117,20 @@ export default {
 			})
 		},
 		
-		
+		async MsgCreatePost({ rootGetters }, { value }) {
+    try {
+        const txClient=await initTxClient(rootGetters)
+        const msg = await txClient.msgCreatePost(value)
+        return msg
+    } catch (e) {
+        if (e == MissingWalletError) {
+            throw new SpVuexError('TxClient:MsgCreatePost:Init', 'Could not initialize signing client. Wallet is required.')
+        }else{
+            throw new SpVuexError('TxClient:MsgCreatePost:Create', 'Could not create message: ' + e.message)
+
+        }
+    }
+},
 		
 		 		
 		
