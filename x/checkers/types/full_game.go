@@ -43,4 +43,3 @@ func (storedGame StoredGame) Validate() (err error) {
 	_, err = storedGame.ParseGame()
 	return err
 }
-

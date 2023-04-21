@@ -100,4 +100,3 @@ func TestGameValidateOk(t *testing.T) {
 	storedGame := GetStoredGame1()
 	require.NoError(t, storedGame.Validate())
 }
-
